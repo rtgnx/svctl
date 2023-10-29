@@ -17,7 +17,7 @@
           <td class="px-4">{{ item.Pid }}</td>
           <td class="px-4">{{ item.Timestamp }}</td>
           <td class="px-4">{{ secondsToHumanReadable(item.Duration) }}</td>
-          <td class="px-4">{{ item.State }}</td>
+          <td class="px-4">{{ stateToText(item) }}</td>
         </tr>
       </tbody>
     </table>
@@ -39,6 +39,9 @@ export default {
     data: Array
   },
   methods: {
+    stateToText(item) {
+      return (item.State == 1) ? "Running" : (item.State == 0) ? "Down" : "Finished";
+    },
     computeStyle(item) {
       return {
         'hover:text-lime-800': true,
